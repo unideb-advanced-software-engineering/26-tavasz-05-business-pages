@@ -1,0 +1,133 @@
+specification {
+    element user {
+        style {
+            shape person
+            color green
+        }
+    }
+
+    element system {
+        style {
+            color muted
+        }
+    }
+
+    element externalSystem {
+        style {
+            color amber
+        }
+    }
+
+    element database {
+        style {
+            shape cylinder
+            color gray
+        }
+    }
+
+    element container
+
+    element frontend {
+        style {
+            shape browser
+            color indigo
+        }
+    }
+
+    element bucket {
+        style {
+            shape bucket
+            color gray
+        }
+    }
+}
+
+model {
+    businessOwner = user 'Business Owner' {
+        description 'A representative of a Zamundan business who wants to publish a website. [cite: 5, 20]'
+    }
+    visitor = user 'Visitor' {
+        description 'An internet user viewing business websites from anywhere in the world. [cite: 5, 20]'
+    }
+    administrator = user 'ZDR Administrator' {
+        description 'The operations team of the Zamunda Digital Renaissance program. [cite: 21]'
+    }
+
+    zamundaDR = system 'Business Pages (ZDR)' {
+        
+        mainDb = database 'System Database' {
+            description 'Stores domain registrations, quotas, configurations, and version history. [cite: 15, 30, 42]'
+        }
+        
+        objectStorage = bucket 'Object Storage' {
+            description 'Physical storage for static files including images, videos, and HTML. [cite: 16, 31]'
+        }
+
+        businessPortal = frontend 'Business Administration Portal' {
+            description 'Web interface with drag-and-drop upload and domain management. [cite: 23, 39]'
+        }
+        
+        publicSite = frontend 'Public Website Interface' {
+            description 'The interface that displays static content uploaded by businesses. [cite: 24]'
+        }
+        
+        adminPortal = frontend 'Administrator Interface' {
+            description 'Management interface for operators to maintain web addresses and set quotas. [cite: 25, 26]'
+        }
+
+        apiGateway = container 'ZDR API Gateway' {
+            description 'REST API for programmed content updates and integrations. [cite: 40]'
+        }
+        
+        syncService = container 'Synchronization Service' {
+            description 'Handles GitHub Webhooks and automated file downloads. [cite: 29, 40]'
+        }
+        
+        cdn = container 'Global CDN' {
+            description 'Ensures low-latency, high-speed global content delivery for static sites. [cite: 18, 43]'
+        }
+
+        businessOwner -> businessPortal 'Manages storage and domain'
+        visitor -> publicSite 'Views websites'
+        administrator -> adminPortal 'Configures quotas and domains'
+        
+        businessPortal -> apiGateway 'API calls'
+        adminPortal -> apiGateway 'Admin operations'
+        publicSite -> cdn 'Retrieves content'
+        cdn -> objectStorage 'Accesses files'
+        
+        apiGateway -> mainDb 'Reads from / Writes to'
+        apiGateway -> objectStorage 'Saves files'
+        syncService -> objectStorage 'Saves GitHub updates'
+        syncService -> mainDb 'Logs versioning'
+    }
+
+    zamundaOne = externalSystem 'Zamunda One API' {
+        description 'Official state identity portal for authentication and business validation. [cite: 19, 28]'
+    }
+    github = externalSystem 'GitHub API' {
+        description 'Source for version control-based updates. [cite: 29, 37]'
+    }
+    dnsSystem = externalSystem 'Zamunda DNS' {
+        description 'Central DNS manager for registering .zamunda domains. [cite: 30]'
+    }
+
+    apiGateway -> zamundaOne 'Authentication and validation'
+    apiGateway -> dnsSystem 'Domain registration'
+    syncService -> github 'Downloads files (Git protocol)'
+    github -> syncService 'Webhook notifications'
+}
+
+views {
+    view systemContextDiagram {
+        title "System Context Diagram"
+        include *
+        autoLayout
+    }
+
+    view containerDiagram of zamundaDR {
+        title "Container Diagram - Business Pages"
+        include *
+        autoLayout
+    }
+}

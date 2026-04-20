@@ -1,0 +1,56 @@
+@startuml businesPages
+
+specification {
+  element  user
+  {
+    style {
+      shape person
+      color green
+    }
+  }
+  element system
+
+  element externalSystem {
+    style {
+      color  amber
+    }
+  }
+}
+
+model {
+  businesOwner = user "Busines Owners"
+  {
+    
+  }
+
+  visitor = user "Visitors"
+  {
+    
+  }
+
+  administrator = user "Administrators"
+  {
+
+  }
+
+  zamundaDR =  system "Busines Pages" {
+
+  }
+  zamundaOneApi = externalSystem "Zamunda One API"
+
+  githubApi = externalSystem "GitHub API"
+
+  domainNameServer = externalSystem "Domain Name Server"
+
+  objectStorageApi = externalSystem "Object Storage API"
+
+  businesOwner -> zamundaDR "uses"
+  visitor -> zamundaDR "uses"
+  administrator -> zamundaDR "uses"
+  zamundaDR -> zamundaOneApi "uses for validation"
+  zamundaDR -> githubApi "uses for updating files"
+  zamundaDR -> objectStorageApi ""
+  zamundaDR -> domainNameServer ""
+  
+}
+@enduml
