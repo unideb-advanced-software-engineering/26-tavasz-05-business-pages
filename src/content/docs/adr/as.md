@@ -1,3 +1,7 @@
+---
+title: "Archtecturális stílus"
+description: "Asd"
+---
 # Architekturális stílus
 
 A projekthez választott architekturális stílusok az alábbiak:
