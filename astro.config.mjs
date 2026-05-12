@@ -7,7 +7,7 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig({
     site: "https://unideb-advanced-software-engineering.github.io",
-    base: "/26-tavasz-05-busines-pages/",
+    base: "/26-tavasz-05-business-pages/",
     vite: {
         plugins: [
             LikeC4VitePlugin({}),
