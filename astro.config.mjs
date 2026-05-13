@@ -4,6 +4,7 @@ import starlight from '@astrojs/starlight';
 import { LikeC4VitePlugin } from 'likec4/vite-plugin'
 import react from '@astrojs/react';
 
+
 // https://astro.build/config
 export default defineConfig({
     site: "https://unideb-advanced-software-engineering.github.io",
