@@ -4,9 +4,6 @@ title: ADR 002 - Service-based and Event-driven Hybrid Architecture
 
 # ADR 002: Service-based and Event-driven Hybrid Architecture
 
-## Status
-Accepted
-
 ## Context
 The Business Pages (ZDR program) platform must manage three distinct functional and load profiles:
 * **Registration and Administration:** A low-volume but critical process requiring high consistency for Zamunda One identification and domain reservation.
