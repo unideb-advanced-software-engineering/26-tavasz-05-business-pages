@@ -1,3 +1,7 @@
+---
+title: "Case Study"
+s---
+
 # 05: Business Pages 
 
 ## Háttér
