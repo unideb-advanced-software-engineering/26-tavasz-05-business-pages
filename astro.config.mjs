@@ -26,6 +26,13 @@ export default defineConfig({
                 ],
             },
             {
+                label: 'Case Study',
+                items: [
+                    // Each item here is one entry in the navigation menu.
+                    { label: 'Case Study', slug: 'case study/esettanulmany' },
+                ],   
+            },
+            {
                 label: 'Architectural Style',
                 autogenerate: { directory: 'architectural style' },
             },
