@@ -15,7 +15,7 @@ export default defineConfig({
         ],
     },
     integrations: [starlight({
-        title: 'My Docs',
+        title: 'Business Pages',
         social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
         sidebar: [
             {
@@ -27,7 +27,11 @@ export default defineConfig({
             },
             {
                 label: 'Architectural Style',
-                autogenerate: { directory: 'as' },
+                autogenerate: { directory: 'architectural style' },
+            },
+            {
+                label: 'SRS',
+                autogenerate: { directory: 'srs' }
             },
             {
                 label: 'ADRs',
